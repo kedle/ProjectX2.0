@@ -1,5 +1,5 @@
 ## Configuration for a CI Fuzz project
-## Generated on 2023-07-11
+## Generated on 2024-09-20
 
 ## The build system used to build this project. If not set, cifuzz tries
 ## to detect the build system automatically.
@@ -23,10 +23,10 @@ build-system: cmake
 ## Command-line arguments to pass to libFuzzer.
 ## See https://llvm.org/docs/LibFuzzer.html#options
 #engine-args:
-# - -rss_limit_mb=4096
+#-rss_limit_mb=512
 
 ## Maximum time to run fuzz tests. The default is to run indefinitely.
-timeout: 10m
+timeout: 20s
 
 ## By default, fuzz tests are executed in a sandbox to prevent accidental
 ## damage to the system. Set to false to run fuzz tests unsandboxed.
@@ -44,6 +44,9 @@ timeout: 10m
 
 ## Set the project name on the CI App.
 #project: my-project-1a2b3c4d
+
+## Set the container registry to upload fuzz containers to.
+# registry: registry.example.org/my-org/my-project
 
 ## Style for CI Fuzz.
 #style: plain

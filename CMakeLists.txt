@@ -6,20 +6,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 enable_testing()
 
+## Add the following two lines to it to enable fuzz testing
+find_package(cifuzz NO_SYSTEM_ENVIRONMENT_PATH)
+enable_fuzz_testing()
+
 add_subdirectory(src)
 
 add_executable(${PROJECT_NAME} main.cpp ) #this executes main.cpp file present in the root project directory
-
-## This file is used to create the fuzzer configuration (.yaml) file
-## Initialize your fuzz project with the command: cifuzz init
-
-## Add the following two lines to it to enable fuzz testing
-# find_package(cifuzz NO_SYSTEM_ENVIRONMENT_PATH)
-# enable_fuzz_testing()
+target_link_libraries(${PROJECT_NAME} PRIVATE calculator)
 
 ## Update this file to correctly point to your created fuzz test file. If you have multiple fuzz test files you'll have to write
 ## multiple lines. For example, for two designed test files 1 and 2, the following two lines should be added
-# add_fuzz_test(<name_to_run_program> test/test1.cpp)
+add_fuzz_test(test1 test/test1.cpp src/calculator.cpp)
 # add_fuzz_test(<name_to_run_program> test/test2.cpp)
 
 ## Next, correctly point to the linked source files present in /src folder
