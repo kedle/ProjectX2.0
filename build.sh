@@ -1,3 +1,3 @@
 #!/bin/bash 
 source name.sh
-docker build  -t ${IMAGE} -f Dockerfile .
+docker build  --no-cache -t ${IMAGE} -f Dockerfile .
